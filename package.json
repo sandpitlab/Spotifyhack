@@ -1,0 +1,24 @@
+{
+  "name": "Pitspot",
+  "version": "0.0.0",
+  "description": "Pitspot is cool",
+  "dependencies": {
+    "bcrypt-nodejs": "latest",
+    "body-parser": "latest",
+    "config": "latest",
+    "connect-flash": "latest",
+    "connect-livereload": "latest",
+    "cookie-parser": "latest",
+    "ejs": "latest",
+    "express": "latest",
+    "express-session": "latest",
+    "log-symbols": "latest",
+    "method-override": "latest",
+    "mongoose": "latest",
+    "morgan": "latest",
+    "passport": "latest",
+    "passport-spotify": "latest",
+    "request": "latest",
+    "tiny-lr": "latest"
+  }
+}
