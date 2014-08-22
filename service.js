@@ -6,6 +6,7 @@ var app = require('express')(),
 	symbol = require('log-symbols'),
 	configFile = require('config'),
 	symbols = require('log-symbols'),
+	mongo = require('./lib/mongo.js')(),
 	User = require('./models/user.js');
 
 var morgan = require('morgan');
