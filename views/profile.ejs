@@ -21,7 +21,7 @@
 		<!-- SPOTIFY INFORMATION -->
 		<div class="col-sm-6">
 			<div class="well">
-				<h3 class="text-primary"><span class="fa fa-spotify"></span> Spotify</h3>
+				<h3 class="text-primary"><span class="fa fa-spotify"></span>Spotify</h3>
 
 					<p>
 						<strong>id</strong>: <%= user.spotify.id %><br>
@@ -29,6 +29,20 @@
 						<strong>created</strong>: <%= user.created %><br>
 					</p>
 
+			</div>
+		</div>
+
+		<div class="col-sm-6">
+			<div class="well">
+				<h3 class="text-primary"><span class="fa fa-spotify"></span>Tracks</h3>
+					<p>
+						<strong>Playlist</strong>: <%= playlist.name %><br>
+					</p>
+					<ul style="list-style-type: none">
+						<% for(var i=0; i < tracks.length; i++) {%>
+						   <li><%= tracks[i].name %></li>
+						<% } %>
+					</ul>
 			</div>
 		</div>
 
