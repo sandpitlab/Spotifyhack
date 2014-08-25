@@ -1,6 +1,7 @@
 "use strict";
 
-var app = require('express')(),
+var express = require('express'),
+  app = express(),
 	bodyParser = require('body-parser'),
 	methodOverride = require('method-override'),
 	symbol = require('log-symbols'),
@@ -35,8 +36,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 var config = configFile.get('Pitspot');
 var PORT = config.service.port;
 
-
 app.set('view engine', 'ejs'); // set up ejs for templating
+app.use(express.static(__dirname + '/public'))
 
 // required for passport
 app.use(session({ secret: 'pitspot', saveUninitialized: true, resave: true })); // session secret

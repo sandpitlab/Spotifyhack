@@ -13,6 +13,7 @@ function isLoggedIn(req, res, next) {
 }
 
 module.exports = function (app) {
+	var user;
 
 	// route for home page
 	app.get('/', function(req, res) {
@@ -21,12 +22,38 @@ module.exports = function (app) {
 
 	// route for showing the profile page
 	app.get('/profile', isLoggedIn, function (req, res) {
-		spotify.getTracksFromPlaylists(req.user, function (err, playlistTrackInfo) {
+		user = user || req.user;
+		spotify.getTopTracksFromPlaylists(user, 20, function (err, tracks) {
 			if (err) {
-				res.status(502).send(err);
+				res.status(500).send(err);
 			} else {
-				res.render('profile.ejs', playlistTrackInfo);
+				res.render('profile.ejs', {user: user, tracks: tracks});
 			}
+		});
+	});
+
+	app.post('/mytracks', isLoggedIn, function (req, res) {
+		user = user || req.user;
+
+		console.log('add tracks to playlist', req.body.tracks);
+		spotify.addTracksToPlaylist(user.spotify.id, req.body.tracks, function (err, playlistId) {
+			if (err) {
+				res.status(500).send(err);
+			} else {
+				res.redirect('/pitspot?id=' + playlistId);
+			}
+		});
+	});
+
+	app.get('/pitspot/:id', function (req, res) {
+		user = user || req.user;
+
+		spotify.getAllTracksFromPlaylist(user.spotify.id, req.params.id, function (err, tracks) {
+			if (err) {
+				res.status(500).send(err);
+			} else {
+				res.render('pitspot.ejs', {playlist: 'The PitSpot', tracks: tracks});
+			};
 		});
 	});
 

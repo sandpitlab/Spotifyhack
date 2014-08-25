@@ -5,49 +5,56 @@
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
 	<style>
-		body 		{ padding-top:80px; word-wrap:break-word; }
+		body { padding-top:80px; word-wrap:break-word; }
 	</style>
 </head>
 <body>
-<div class="container">
+	<div class="container">
 
-	<div class="page-header text-center">
-		<h1><span class="fa fa-anchor"></span> Profile Page</h1>
-		<a href="/logout" class="btn btn-default btn-sm">Logout</a>
-	</div>
-
-	<div class="row">
-
-		<!-- SPOTIFY INFORMATION -->
-		<div class="col-sm-6">
-			<div class="well">
-				<h3 class="text-primary"><span class="fa fa-spotify"></span>Spotify</h3>
-
-					<p>
-						<strong>id</strong>: <%= user.spotify.id %><br>
-						<strong>token</strong>: <%= user.spotify.token %><br>
-						<strong>created</strong>: <%= user.created %><br>
-					</p>
-
-			</div>
+		<div class="page-header text-center">
+			<h1><span class="fa fa-anchor"></span> Profile Page</h1>
+			<a href="/logout" class="btn btn-default btn-sm">Logout</a>
 		</div>
 
-		<div class="col-sm-6">
-			<div class="well">
-				<h3 class="text-primary"><span class="fa fa-spotify"></span>Tracks</h3>
-					<p>
-						<strong>Playlist</strong>: <%= playlist.name %><br>
-					</p>
-					<ul style="list-style-type: none">
+		<div class="row">
+
+			<!-- SPOTIFY INFORMATION -->
+			<div class="col-sm-6">
+				<div class="well">
+					<h3 class="text-primary"><span class="fa fa-spotify"></span>Spotify</h3>
+
+						<p>
+							<strong>id</strong>: <%= user.spotify.id %><br>
+							<strong>token</strong>: <%= user.spotify.token %><br>
+							<strong>created</strong>: <%= user.created %><br>
+						</p>
+
+				</div>
+			</div>
+
+			<div class="col-sm-6">
+				<div class="well">
+					
+					<h3 class="text-primary"><span class="fa fa-spotify"></span>Top Tracks from <%= user.spotify.id %></h3>
+						
+					<ul style="list-style-type: none; list-style: none; padding-left: 3px;">
 						<% for(var i=0; i < tracks.length; i++) {%>
-						   <li><%= tracks[i].name %></li>
+						   <li style="display: block; position: relative; width: 100%;">
+						   	<a class="track" href="<%= tracks[i].uri %>" data-track-uris="<%= tracks[i].uri %>">
+						   		<%= tracks[i].name %> - <%= tracks[i].artists[0].name %> ( <%= tracks[i].album.name %> )</a>
+					   		<a class="preview pull-right" href="<%= tracks[i].preview_url %>">Preview</a>
+						  </li>
 						<% } %>
 					</ul>
+					
+					<button class="btn btn-primary btn-lg" id="addtracks">Add Tracks to the PitSpot</button>
+
+				</div>
 			</div>
+
 		</div>
 
 	</div>
-
-</div>
+	<script src="js/pitspot.js"></script>
 </body>
 </html>
