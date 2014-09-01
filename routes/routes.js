@@ -35,23 +35,24 @@ module.exports = function (app) {
 	app.post('/mytracks', isLoggedIn, function (req, res) {
 		user = user || req.user;
 
-		console.log('add tracks to playlist', req.body.tracks);
 		spotify.addTracksToPlaylist(user.spotify.id, req.body.tracks, function (err, playlistId) {
 			if (err) {
 				res.status(500).send(err);
 			} else {
-				res.redirect('/pitspot?id=' + playlistId);
+				console.log('redirecting to /pitspot/' + playlistId);
+				res.send({url: '/pitspot/' + playlistId});
 			}
 		});
 	});
 
-	app.get('/pitspot/:id', function (req, res) {
+	app.get('/pitspot/:id', isLoggedIn, function (req, res) {
 		user = user || req.user;
 
 		spotify.getAllTracksFromPlaylist(user.spotify.id, req.params.id, function (err, tracks) {
 			if (err) {
 				res.status(500).send(err);
 			} else {
+				console.log('all done');
 				res.render('pitspot.ejs', {playlist: 'The PitSpot', tracks: tracks});
 			};
 		});

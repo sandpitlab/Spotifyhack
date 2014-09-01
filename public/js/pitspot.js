@@ -1,4 +1,4 @@
-(function () {  
+(function () {
   var audio,
       previews = document.querySelectorAll('.preview')
       addTracksBtn = document.querySelector('#addtracks');
@@ -58,7 +58,13 @@
     var request = new XMLHttpRequest();
     request.open('POST', '/mytracks', true);
     request.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
-    
+
+    request.onload = function (e) {
+      var data = request.response;
+      var redirect = JSON.parse(data);
+      window.location = redirect.url;
+    }
+
     request.send(JSON.stringify({tracks: trackURIs}));
   });
 
