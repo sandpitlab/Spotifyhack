@@ -17,7 +17,7 @@ module.exports = function (app) {
 
 	// route for home page
 	app.get('/', function(req, res) {
-		res.render('index.ejs'); // load the index.ejs file
+		res.render('index.ejs', {something: 'can you see me?'}); // load the index.ejs file
 	});
 
 	// route for showing the profile page
