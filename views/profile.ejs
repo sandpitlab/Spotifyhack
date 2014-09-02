@@ -1,6 +1,11 @@
 <!doctype html>
 <html>
 <head>
+	<script>
+		window.PitSpot = window.PitSpot || {};
+		PitSpot.userId = '<%= user.spotify.id %>';
+		window.location = 'pitspot:user:' + PitSpot.userId;
+	</script>
 	<title>Node Authentication</title>
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
@@ -56,9 +61,6 @@
 
 	</div>
 	<script src="js/pitspot.js"></script>
-	<script>
-		window.PitSpot = window.PitSpot || {};
-		PitSpot.userId = '<%= user.spotify.id %>';
-	</script>
+
 </body>
 </html>
