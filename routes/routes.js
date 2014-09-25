@@ -17,7 +17,7 @@ module.exports = function (app) {
 
 	// route for home page
 	app.get('/', function(req, res) {
-		res.render('index.ejs', {something: 'can you see me?'}); // load the index.ejs file
+		res.render('index.ejs');
 	});
 
 	// route for showing the profile page
@@ -35,7 +35,7 @@ module.exports = function (app) {
 	app.post('/mytracks', isLoggedIn, function (req, res) {
 		user = user || req.user;
 
-		spotify.addTracksToPlaylist(user.spotify.id, req.body.tracks, function (err, playlistId) {
+		spotify.addTracksToPlaylist(req.body.tracks, function (err, playlistId) {
 			if (err) {
 				res.status(500).send(err);
 			} else {

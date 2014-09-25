@@ -20,10 +20,6 @@ global.log = console.log.bind(console);
 
 require('./lib/passport-config.js')(passport);
 
-// time saver
-global.log = console.log.bind(console);
-
-
 // middleware
 app.use(methodOverride());
 app.use(morgan('dev')); // log every request to the console
