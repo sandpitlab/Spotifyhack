@@ -52,7 +52,7 @@ module.exports = function (app) {
 			if (err) {
 				res.status(500).send(err);
 			} else {
-				console.log('all done');
+				console.log('all done', tracks.length);
 				res.render('pitspot.ejs', {playlist: 'The PitSpot', tracks: tracks});
 			};
 		});
